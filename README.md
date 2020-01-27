@@ -65,7 +65,7 @@ Updates a product by ID. This call requires all aurguments be present.
 ```python
 from autobuy import product
 
-updatedProduct = product.update(APIKey='2cdbdc48-b297-41ad-a234-329db0d2dbea', id='2cdbdc48-b297-41ad-a234-329db0d2dbea', name='test13', description='updated description', price='8.99', productType'SerialNumber', unlisted=False, blockProxy=False, purchaseMax='100000', purchaseMin='1', webhookUrl=None, serials=['new account'], stockDelimiter=','')
+updatedProduct = product.update(APIKey='2cdbdc48-b297-41ad-a234-329db0d2dbea', id='2cdbdc48-b297-41ad-a234-329db0d2dbea', name='test13', description='updated description', price='8.99', productType'SerialNumber', unlisted=False, blockProxy=False, purchaseMax='100000', purchaseMin='1', webhookUrl='https://ptb.discordapp.com/api/webhooks/618938749723869205/wMjAX1okpWGuMvIScJXk2cU_r8D1qAiPty5W78vs9znoX254i1l7-8gYM4Ew_A3io0r8', serials=['new account'], stockDelimiter=','')
 ```
 
 
@@ -96,4 +96,3 @@ for item in items:
     updatedProduct = product.addStock(APIKey='2cdbdc48-b297-41ad-a234-329db0d2dbea', id='2cdbdc48-b297-41ad-a234-329db0d2dbea', serial=item)
 
 ```
-
