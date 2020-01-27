@@ -44,7 +44,7 @@ class get:
 class product:
     @staticmethod
     def create(APIKey, name, description, price, productType, unlisted=False, blockProxy=False, purchaseMax='100000',
-               purchaseMin='1', webhookUrl=None, serials=[], stockDelimiter=','):
+               purchaseMin='1', webhookUrl=None, serials='', stockDelimiter=','):
         payload = {
             'Name': name,
             'Description': description,
@@ -107,6 +107,7 @@ class product:
         for j in productJson['serials']:
             p.append(j)
         p.append(serial)
+        p = ','.join(p)
         updatedProduct = product.update(APIKey, productJson['id'], productJson['name'], productJson['description'],
                                         productJson['price'],
                                         productJson['productType'], productJson['unlisted'], productJson['blockProxy'],
