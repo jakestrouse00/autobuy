@@ -1,5 +1,5 @@
-# Unoffical autobuy.io Python Wrapper
-An unoffical Python wrapper for the autobuy.io API
+# Unofficial autobuy.io Python Wrapper
+An unofficial Python wrapper for the autobuy.io API
 
 ## prerequisites
 requests==2.22.0
@@ -60,7 +60,7 @@ newProduct = product.create(APIKey='2cdbdc48-b297-41ad-a234-329db0d2dbea', name=
 
 
 #### Update product
-Updates a product by ID. This call requires all aurguments be present.
+Updates a product by ID. This call requires all arguments to be present.
 
 ```python
 from autobuy import product
@@ -96,3 +96,4 @@ for item in items:
     updatedProduct = product.addStock(APIKey='2cdbdc48-b297-41ad-a234-329db0d2dbea', id='2cdbdc48-b297-41ad-a234-329db0d2dbea', serial=item)
 
 ```
+
