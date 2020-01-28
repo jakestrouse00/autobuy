@@ -50,7 +50,7 @@ allProducts = get.products(APIKey='2cdbdc48-b297-41ad-a234-329db0d2dbea', id='2c
 #### Create product
 Creates a new product.
 
-Only four arguments are required. APIKey, name, description, productType. The rest of the arguments are optional. Optional arguments with default values are: unlisted=False, blockProxy=False, purchaseMax='100000', purchaseMin='1', webhookUrl=None, serials=[], stockDelimiter=','. 
+Only four arguments are required. APIKey, name, description, productType. The rest of the arguments are optional. Optional arguments with default values are: unlisted=False, blockProxy=False, purchaseMax='100000', purchaseMin='1', webhookUrl=None, serials='', stockDelimiter=','. 
 ```python
 from autobuyWrapper.autobuy import product
 
