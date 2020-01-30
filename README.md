@@ -1,7 +1,7 @@
 # Unofficial autobuy.io Python Wrapper
 An unofficial Python wrapper for the autobuy.io API
 
-![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)
+![Build Status](https://img.shields.io/badge/build-passing-brightgreen)
 
 ## prerequisites
 requests==2.22.0
