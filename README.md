@@ -3,6 +3,8 @@ An unofficial Python wrapper for the autobuy.io API
 
 ![Build Status](https://img.shields.io/badge/build-passing-brightgreen)
 
+## Background Information
+AutoBuy.io is an e-commerce platform for merchants who sell digital items. AutoBuy.io is currently in open beta. You can visit AutoBuy.io [HERE](https://autobuy.io/ "AutoBuy.io Homepage")
 ## prerequisites
 requests==2.22.0
 
@@ -106,3 +108,4 @@ for item in items:
     updatedProduct = ProductMethod.addStock(id='2cdbdc48-b297-41ad-a234-329db0d2dbea', serial=item)
 
 ```
+
