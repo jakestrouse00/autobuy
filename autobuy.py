@@ -88,7 +88,8 @@ class Product:
 
         }
         r = requests.put('https://autobuy.io/api/Product',
-                         headers={'content-type': 'application/x-www-form-urlencoded', 'APIKey': self.APIKey}, data=payload)
+                         headers={'content-type': 'application/x-www-form-urlencoded', 'APIKey': self.APIKey},
+                         data=payload)
         if int(r.status_code) == 200:
             return r.json()
         else:
@@ -108,9 +109,79 @@ class Product:
             p.append(j)
         p.append(serial)
         p = ','.join(p)
-        updatedProduct = Product.update(self, id=productJson['id'], name=productJson['name'], description=productJson['description'],
+        updatedProduct = Product.update(self, id=productJson['id'], name=productJson['name'],
+                                        description=productJson['description'],
                                         price=productJson['price'],
-                                        productType=productJson['productType'], unlisted=productJson['unlisted'], blockProxy=productJson['blockProxy'],
+                                        productType=productJson['productType'], unlisted=productJson['unlisted'],
+                                        blockProxy=productJson['blockProxy'],
                                         purchaseMax=productJson['purchaseMax'], purchaseMin=productJson['purchaseMin'],
-                                        webhookUrl=productJson['webhookUrl'], stockDelimiter=productJson['stockDelimiter'], serials=p)
+                                        webhookUrl=productJson['webhookUrl'],
+                                        stockDelimiter=productJson['stockDelimiter'], serials=p)
         return updatedProduct
+
+
+class Licence:
+    def __init__(self, APIKey):
+        self.APIKey = str(APIKey)
+
+    def projects(self):
+        r = requests.get('https://autobuy.io/api/Projects',
+                         headers={'content-type': 'application/x-www-form-urlencoded', 'APIKey': self.APIKey})
+        if int(r.status_code) == 200:
+            return r.json()
+        else:
+            raise ValueError(
+                f"Status code: {r.status_code} | Reason: {r.reason}: Invalid APIKey or invalid parameter(s)")
+
+    def get(self, id):
+        r = requests.get('https://autobuy.io/api/Licensing',
+                         headers={'content-type': 'application/x-www-form-urlencoded', 'APIKey': self.APIKey},
+                         data={'id': str(id)})
+        if int(r.status_code) == 200:
+            return r.json()
+        else:
+            raise ValueError(
+                f"Status code: {r.status_code} | Reason: {r.reason}: Invalid APIKey or invalid parameter(s)")
+
+    def create(self, projectid, expiration, email):
+        r = requests.post('https://autobuy.io/api/Licensing',
+                          headers={'content-type': 'application/x-www-form-urlencoded', 'APIKey': self.APIKey},
+                          data={'ProjectId': str(projectid), 'TimeExpired': str(expiration), 'Email': str(email)})
+        if int(r.status_code) == 200:
+            return r.json()
+        else:
+            raise ValueError(
+                f"Status code: {r.status_code} | Reason: {r.reason}: Invalid APIKey or invalid parameter(s)")
+
+    def delete(self, id):
+        r = requests.delete('https://autobuy.io/api/Licensing',
+                            headers={'content-type': 'application/x-www-form-urlencoded', 'APIKey': self.APIKey},
+                            data={'id': str(id)})
+        if int(r.status_code) == 200:
+            return r.text
+        else:
+            raise ValueError(
+                f"Status code: {r.status_code} | Reason: {r.reason}: Invalid APIKey or invalid parameter(s)")
+
+    def update(self, id, email, expiration, isBan, banReason, hwid):
+        r = requests.put('https://autobuy.io/api/Licensing',
+                         headers={'content-type': 'application/x-www-form-urlencoded', 'APIKey': self.APIKey},
+                         data={'id': str(id), 'Email': str(email), 'TimeExpired': str(expiration), 'IsBan': str(isBan), 'BanReason': str(banReason), 'HardwareId': str(hwid)})
+        if int(r.status_code) == 200:
+            return r.json()
+        else:
+            raise ValueError(
+                f"Status code: {r.status_code} | Reason: {r.reason}: Invalid APIKey or invalid parameter(s)")
+
+    def checkhwid(self, id, hwid):
+        r = requests.post('https://autobuy.io/api/Licensing/VerifyHardwareId',
+                         headers={'content-type': 'application/x-www-form-urlencoded', 'APIKey': self.APIKey},
+                         data={'id': str(id), 'HardwareId': str(hwid)})
+        if int(r.status_code) == 200:
+            return True
+        elif int(r.status_code) == 400:
+            return False
+        else:
+            raise ValueError(
+                f"Status code: {r.status_code} | Reason: {r.reason}: Invalid APIKey or invalid parameter(s)")
+
